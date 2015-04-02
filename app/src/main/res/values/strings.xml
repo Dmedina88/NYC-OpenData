@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NYC_OpenData</string>
+    <string name="title_activity_nycmap">NYC Crash Map</string>
+</resources>
