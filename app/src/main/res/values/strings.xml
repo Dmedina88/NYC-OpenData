@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">NYC_OpenData</string>
     <string name="title_activity_nycmap">NYC Crash Map</string>
+    <string name="gathering_crash_report">Gathering Crash Reports</string>
+    <string name="crash_report">Crash Report</string>
+    <string name="share">Share</string>
+    <string name="error">network error</string>
 </resources>

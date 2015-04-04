@@ -3,24 +3,23 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="com.grayherring.nyc_opendata.activities.NYCMap">
-        <item
-            android:id="@+id/action_dothing"
-            android:orderInCategory="100"
-            android:title="dothing"
-            app:showAsAction="ifRoom|withText" />
+
     <item
-        android:id="@+id/next"
-        android:orderInCategory="100"
-        android:title="Next"
-        app:showAsAction="ifRoom|withText" />
-    <item
-        android:id="@+id/previous"
+        android:id="@+id/action_previous"
         android:orderInCategory="100"
         android:title="Previous"
-        app:showAsAction="ifRoom|withText" />
+        android:icon="@drawable/ic_back"
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/search"
+        android:id="@+id/action_next"
         android:orderInCategory="100"
-        android:title="Search"
+        android:title="Next"
+        android:icon="@drawable/ic_next"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/settings"
+        android:orderInCategory="100"
+        android:title="Settings"
         app:showAsAction="ifRoom|withText" />
     </menu>

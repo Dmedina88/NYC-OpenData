@@ -1,12 +1,19 @@
 package com.grayherring.nyc_opendata.activities;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -15,6 +22,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.grayherring.nyc_opendata.R;
 import com.grayherring.nyc_opendata.models.CollisionModel;
 import com.grayherring.nyc_opendata.networking.OpenNYRetroFitManager;
+import com.grayherring.nyc_opendata.ui.FloatingActionButton;
+import com.grayherring.nyc_opendata.util.NyCrashPrefManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,17 +35,45 @@ import retrofit.client.Response;
 public class NYCMap extends ActionBarActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
-    private int mCurrentOffSet =0;
     private ArrayList<Marker> mMarkers;
     private ArrayList<CollisionModel> mCollisions;
+    private int mLimit;
+    private int mCurrentOffSet =0;
+
+    private ProgressDialog mProgressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+       //ui stuff
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nycmap);
-        mCollisions = new ArrayList<CollisionModel>();
+        FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
+                .withDrawable(getResources().getDrawable(R.drawable.ic_next))
+                .withButtonColor(getResources().getColor(R.color.fob_color))
+                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
+                .withMargins(0, 0, 16, 16)
+                .create();
 
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                next();
+            }
+        });
+
+
+        mProgressDialog = new ProgressDialog(this);
+       // mProgressDialog.setTitle("Searching");
+        mProgressDialog.setMessage(getString(R.string.gathering_crash_report));
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        //init
+        mLimit = NyCrashPrefManager.getInstance(this).getLimet();
+        mCurrentOffSet = 0;
+        mCollisions = new ArrayList<CollisionModel>();
+        //map setup
         setUpMapIfNeeded();
+        search();
     }
 
     @Override
@@ -68,6 +105,7 @@ public class NYCMap extends ActionBarActivity {
                     .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null ) {
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.6343610, -73.9754030), 10));
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
@@ -75,8 +113,17 @@ public class NYCMap extends ActionBarActivity {
                         Log.d("test","on click ");
                         int index =  mMarkers.indexOf(marker);
                         if (index>0){
-                            CollisionModel  collisionModel = mCollisions.get(index);
-                            new AlertDialog.Builder(NYCMap.this).setTitle("Crash Report").setMessage(collisionModel.report()).show();
+                            final CollisionModel collisionModel = mCollisions.get(index);
+                            new AlertDialog.Builder(NYCMap.this).setTitle(getString(R.string.crash_report)).setMessage(collisionModel.report()).setPositiveButton(getString(R.string.share),new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent=new Intent(android.content.Intent.ACTION_SEND);
+                                    intent.setType("text/plain");
+                                    intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.crash_report));
+                                    intent.putExtra(Intent.EXTRA_TEXT,collisionModel.report() );
+                                    startActivity(Intent.createChooser(intent,getString(R.string.share) ));
+                                }
+                            }).show();
                         }
 
                         return false;
@@ -96,12 +143,12 @@ public class NYCMap extends ActionBarActivity {
      */
     private void setUpMap() {
 
+        mMap.clear();
         mMarkers= new ArrayList<Marker>();
         for(CollisionModel collisionModel : mCollisions){
-            mMarkers.add(  mMap.addMarker(new MarkerOptions().position(new LatLng(collisionModel.latitude, collisionModel.longitude)).title(collisionModel.toString())));
+            mMarkers.add(  mMap.addMarker(new MarkerOptions().position(new LatLng(collisionModel.latitude, collisionModel.longitude))));
         }
-
-
+        mProgressDialog.dismiss();
     }
 
 
@@ -117,40 +164,32 @@ public class NYCMap extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if (id == R.id.action_dothing) {
-            testapicall();
-            return true;
+
+        switch (id){
+
+            case R.id.action_next:
+                next();
+                break;
+            case R.id.action_previous:
+                previous();
+                break;
         }
 
     
         return super.onOptionsItemSelected(item);
     }
 
-    private void testapicall() {
+
+
+    private void search(){
+        mProgressDialog.show();
         mCollisions = new ArrayList<CollisionModel>();
         HashMap<String,String> quaryMap = new HashMap<String,String>();
-        quaryMap.put("$limit","10");
+        quaryMap.put("$limit",""+mLimit);
         quaryMap.put("$offset",""+mCurrentOffSet);
         quaryMap.put("$order","date DESC");
         quaryMap.put("$where","latitude IS NOT NULL");
 
-
-        /*
-        OpenNYRetroFitManager.getInstince().getall(new Callback<ArrayList<CollisionModel>>() {
-            @Override
-            public void success(ArrayList<CollisionModel> collisionModels, Response response) {
-
-                for(int i =0;i<100;i++){
-                    Log.d("TEST",collisionModels.get(i).uniqueKey + " " + collisionModels.get(i).date);
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("TEST",error.getUrl());
-            }
-        });
-*/
 
         OpenNYRetroFitManager.getInstince().makeQuary(quaryMap, new Callback<ArrayList<CollisionModel>>() {
             @Override
@@ -165,8 +204,22 @@ public class NYCMap extends ActionBarActivity {
             @Override
             public void failure(RetrofitError error) {
                 Log.d("TEST", error.getUrl());
+                mProgressDialog.dismiss();
+                Toast.makeText(NYCMap.this,getString(R.string.error),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void next(){
+       mCurrentOffSet += mLimit;
+        search();
+
+    }
+    private  void previous(){
+        if(mCurrentOffSet >0) {
+            mCurrentOffSet -= mLimit;
+            search();
+        }
     }
 
 

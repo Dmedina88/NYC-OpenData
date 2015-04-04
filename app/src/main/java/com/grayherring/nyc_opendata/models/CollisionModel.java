@@ -50,13 +50,17 @@ public class CollisionModel {
     public float latitude;
 
 
+    public String getPrettyDate(){
+       return date.replace("T00:00:00","");
+    }
+
     public String report() {
         return
                 "ZipCode: " + zipCode + '\n' +
                 "Borough: " + borough + '\n' +
                 "Off StreetName: " + offStreetName + '\n' +
                 "On StreetName: " + onStreetName + '\n' +
-                "Date: " + date + '\n' +
+                "Date: " + getPrettyDate() + '\n' +
                 "Time: " + time + '\n' +
                 "Persons Killed: " + personsKilled + '\n' +
                 "Motorist Killed: " + motoristKilled + '\n' +
@@ -69,9 +73,5 @@ public class CollisionModel {
     }
 
 
-//    public class Location {
-//       public boolean needs_recoding;
-//       public float longitude;
-//       public float latitude;
-//    }
+
 }
