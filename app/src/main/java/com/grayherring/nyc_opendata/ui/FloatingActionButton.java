@@ -2,6 +2,7 @@ package com.grayherring.nyc_opendata.ui;
 
 
 //https://gist.github.com/Jogan/9def6110edf3247825c9   John Hogan  July 24, 2014
+
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -108,13 +109,13 @@ public class FloatingActionButton extends View {
     }
 
     static public class Builder {
-        private FrameLayout.LayoutParams params;
         private final Activity activity;
         int gravity = Gravity.BOTTOM | Gravity.RIGHT; // default bottom right
         Drawable drawable;
         int color = Color.WHITE;
         int size = 0;
         float scale = 0;
+        private FrameLayout.LayoutParams params;
 
         public Builder(Activity context) {
             scale = context.getResources().getDisplayMetrics().density;
@@ -183,8 +184,8 @@ public class FloatingActionButton extends View {
         // The calculation (value * scale + 0.5f) is a widely used to convert to dps to pixel units
         // based on density scale
         // see developer.android.com (Supporting Multiple Screen Sizes)
-        private int convertToPixels(int dp, float scale){
-            return (int) (dp * scale + 0.5f) ;
+        private int convertToPixels(int dp, float scale) {
+            return (int) (dp * scale + 0.5f);
         }
     }
 }

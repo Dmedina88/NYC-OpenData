@@ -20,8 +20,9 @@ public class OpenNYRetroFitManager {
     static final String END_POINT = "https://data.cityofnewyork.us/resource";
     static final String APP_TOKEN = "X-App-Token: gsMJoOgPCopqmuS0jtqvlXGdC";
 
+
+    private static OpenNYRetroFitManager mOpenNYRetroFitManager;
     private OpenNYRetrofitApi mSwagRetrofit;
-    private static  OpenNYRetroFitManager  mOpenNYRetroFitManager;
     //  public static final String URL_FIELD = "url";
 
 
@@ -36,22 +37,22 @@ public class OpenNYRetroFitManager {
         mSwagRetrofit = restAdapter.create(OpenNYRetrofitApi.class);
     }
 
-    public static OpenNYRetroFitManager getInstince(){
+    public static OpenNYRetroFitManager getInstince() {
 
-        if(mOpenNYRetroFitManager == null){
+        if (mOpenNYRetroFitManager == null) {
             mOpenNYRetroFitManager = new OpenNYRetroFitManager();
         }
 
         return mOpenNYRetroFitManager;
     }
 
-    public void getall(Callback<ArrayList<CollisionModel>> callback){
+    public void getall(Callback<ArrayList<CollisionModel>> callback) {
         mSwagRetrofit.getAll(callback);
 
     }
 
-    public void makeQuary(HashMap<String, String> quaryMap , Callback<ArrayList<CollisionModel>> callback){
-        mSwagRetrofit.makeQuery(quaryMap ,callback);
+    public void makeQuary(HashMap<String, String> quaryMap, Callback<ArrayList<CollisionModel>> callback) {
+        mSwagRetrofit.makeQuery(quaryMap, callback);
 
     }
     //public String QueryBuilder(){};

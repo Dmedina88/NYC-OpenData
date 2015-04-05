@@ -1,0 +1,42 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Map Settings" >
+        <EditTextPreference
+            android:key="LIMET_KEY"
+            android:defaultValue="15"
+            android:summary=""
+            android:title="Markers Per Search"/>
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Date Search Settings">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="date_checkbox"
+            android:title="Use date for search" />
+
+        <com.grayherring.nyc_opendata.ui.DatePickerPreference
+            android:key="DATE_KEY"
+            android:defaultValue="2012-07-01"
+            android:summary=""
+            android:title="Date of search"/>
+
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Borough Search Settings">
+
+        <ListPreference
+            android:defaultValue="All"
+            android:entries="@array/boroughs"
+            android:entryValues="@array/boroughs"
+            android:key="borough_key"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Select Borough to Search" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

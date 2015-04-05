@@ -5,4 +5,6 @@
     <string name="crash_report">Crash Report</string>
     <string name="share">Share</string>
     <string name="error">network error</string>
+
+    >
 </resources>

@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <menu xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context="com.grayherring.nyc_opendata.activities.NYCMap">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.grayherring.nyc_opendata.activities.NYCMap">
 
     <item
         android:id="@+id/action_previous"
+        android:icon="@drawable/ic_back"
         android:orderInCategory="100"
         android:title="Previous"
-        android:icon="@drawable/ic_back"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_next"
+        android:icon="@drawable/ic_next"
         android:orderInCategory="100"
         android:title="Next"
-        android:icon="@drawable/ic_next"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/search"
+        android:orderInCategory="100"
+        android:title="Search"
+        app:showAsAction="ifRoom|withText" />
 
     <item
         android:id="@+id/settings"
         android:orderInCategory="100"
-        android:title="Settings"
+        android:title="Search Settings"
         app:showAsAction="ifRoom|withText" />
-    </menu>
+</menu>

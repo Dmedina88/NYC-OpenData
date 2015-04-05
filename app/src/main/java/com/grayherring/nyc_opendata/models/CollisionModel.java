@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class CollisionModel {
 
+    public static final String USELESS_DATE_STRING = "T00:00:00";
     // i put theses in the order the json gave me altho it makes sense
     @SerializedName("number_of_persons_killed")
     public String personsKilled;
@@ -38,40 +39,39 @@ public class CollisionModel {
     public String uniqueKey;
     public String borough;
     @SerializedName("contributing_factor_vehicle_1")
-    public String  contributingVehical1;
+    public String contributingVehical1;
     @SerializedName("number_of_motorist_killed")
     public String motoristKilled;
     @SerializedName("number_of_persons_injured")
     public String personsInjured;
     @SerializedName("contributing_factor_vehicle_3")
-    public String  contributingVehical3;
+    public String contributingVehical3;
     @SerializedName("contributing_factor_vehicle_2")
-    public String  contributingVehical2;
+    public String contributingVehical2;
     public float latitude;
 
 
-    public String getPrettyDate(){
-       return date.replace("T00:00:00","");
+    public String getPrettyDate() {
+        return date.replace(USELESS_DATE_STRING, "");
     }
 
     public String report() {
         return
                 "ZipCode: " + zipCode + '\n' +
-                "Borough: " + borough + '\n' +
-                "Off StreetName: " + offStreetName + '\n' +
-                "On StreetName: " + onStreetName + '\n' +
-                "Date: " + getPrettyDate() + '\n' +
-                "Time: " + time + '\n' +
-                "Persons Killed: " + personsKilled + '\n' +
-                "Motorist Killed: " + motoristKilled + '\n' +
-                "Moterist Injered: " + moteristInjered + '\n' +
-                "Persons Injured: " + personsInjured + '\n' +
-                "Pedestrians Killed: " + pedestriansInjered + '\n' +
-                "Pedestrians Injered: " + pedestriansInjered + '\n' +
-                "Cyclist Killed: " + cyclistKilled + '\n' +
-                "Cyclist Injured: " + cyclistInjured;
+                        "Borough: " + borough + '\n' +
+                        "Off StreetName: " + offStreetName + '\n' +
+                        "On StreetName: " + onStreetName + '\n' +
+                        "Date: " + getPrettyDate() + '\n' +
+                        "Time: " + time + '\n' +
+                        "Persons Killed: " + personsKilled + '\n' +
+                        "Motorist Killed: " + motoristKilled + '\n' +
+                        "Moterist Injered: " + moteristInjered + '\n' +
+                        "Persons Injured: " + personsInjured + '\n' +
+                        "Pedestrians Killed: " + pedestriansInjered + '\n' +
+                        "Pedestrians Injered: " + pedestriansInjered + '\n' +
+                        "Cyclist Killed: " + cyclistKilled + '\n' +
+                        "Cyclist Injured: " + cyclistInjured;
     }
-
 
 
 }

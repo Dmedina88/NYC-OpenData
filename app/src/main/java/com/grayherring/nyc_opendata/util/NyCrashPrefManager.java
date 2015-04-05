@@ -1,6 +1,5 @@
 package com.grayherring.nyc_opendata.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -9,27 +8,29 @@ import android.content.SharedPreferences;
  */
 public class NyCrashPrefManager {
 
+    public static final String SHARED_PREF = "SHARED_PREF";
+    public static final String LIMET_KEY = "LIMET_KEY";
+    public static final String DATE_KEY = "DATE_KEY";
+    public static final String DATE_CHECKBOX_KEY = "date_checkbox";
+    public static final String BOROUGH_KEY = "borough_key";
+
+    private static NyCrashPrefManager instance;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
 
-    public static final  String SHARED_PREF = "SHARED_PREF" ;
-    public static final  String LIMET_KEY = "LIMET_KEY" ;
-
-    private static NyCrashPrefManager instance;
-
 
     private NyCrashPrefManager(Context context) {
-        pref = context.getSharedPreferences(SHARED_PREF, Activity.MODE_PRIVATE);
+        pref = android.preference.PreferenceManager.getDefaultSharedPreferences(context);
 
     }
 
-   public static NyCrashPrefManager getInstance(Context context){
-       if(instance == null){
-           instance = new NyCrashPrefManager(context);
-       }
-       return  instance;
+    public static NyCrashPrefManager getInstance(Context context) {
+        if (instance == null) {
+            instance = new NyCrashPrefManager(context);
+        }
+        return instance;
 
-   }
+    }
 
     public void startEdit() {
         editor = pref.edit();
@@ -42,14 +43,28 @@ public class NyCrashPrefManager {
     }
 
 
-    public int getLimet() {
-
-        return pref.getInt(LIMET_KEY, 15);
+    public String getLimet() {
+        return pref.getString(LIMET_KEY, "15");
     }
 
+    public boolean isDateChecked() {
+        return pref.getBoolean(DATE_CHECKBOX_KEY, false);
+    }
+
+    public String getDate() {
+        return pref.getString(DATE_KEY, "1988-09-23");
+    }
+    public String GetBorught() {
+        return pref.getString(BOROUGH_KEY, "All");
+    }
+
+
     //part of me  wants to make this take a string and turn it to int
-    public void setLimet(int value) {
-        editor.putInt(LIMET_KEY, value);
+    public void setLimet(String value) {
+        editor = pref.edit();
+        editor.putString(LIMET_KEY, value);
+        editor.commit();
+        editor = null;
     }
 
 }

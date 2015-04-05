@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="boroughs">
+        <item>All</item>
+        <item>MANHATTAN</item>
+        <item>BROOKLYN</item>
+        <item>QUEENS</item>
+        <item>BRONX</item>
+        <item>STATEN ISLAND</item>
+    </string-array>
+</resources>
