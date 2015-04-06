@@ -15,8 +15,6 @@ public class NyCrashPrefManager {
 
     private static NyCrashPrefManager instance;
     private SharedPreferences pref;
-    private SharedPreferences.Editor editor;
-
 
     private NyCrashPrefManager(Context context) {
         pref = android.preference.PreferenceManager.getDefaultSharedPreferences(context);
@@ -43,11 +41,10 @@ public class NyCrashPrefManager {
     public String getDate() {
         return pref.getString(DATE_KEY, "2012-07-01");
     }
+
     public String GetBorught() {
         return pref.getString(BOROUGH_KEY, "All");
     }
-
-
 
 
 }

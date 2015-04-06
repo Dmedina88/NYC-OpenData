@@ -15,9 +15,9 @@ import com.grayherring.nyc_opendata.R;
  */
 public class DatePickerPreference extends DialogPreference {
     private DatePicker mDatePicker;
-    private int mDay =1;
-    private int mYear =2012;
-    private int mMonth =7;
+    private int mDay = 1;
+    private int mYear = 2012;
+    private int mMonth = 7;
     private String mDate;
 
     public DatePickerPreference(Context context, AttributeSet attrs) {
@@ -41,7 +41,7 @@ public class DatePickerPreference extends DialogPreference {
         super.onBindDialogView(v);
         //yyyy-mm-dd
 
-        mDatePicker.updateDate(mYear, mMonth , mDay);
+        mDatePicker.updateDate(mYear, mMonth, mDay);
 
     }
 
@@ -63,7 +63,7 @@ public class DatePickerPreference extends DialogPreference {
             } else {
                 month = "" + numMonth;
             }
-            String day="";
+            String day = "";
             if (mDay < 10) {
                 day = "0" + mDay;
             } else {
@@ -94,18 +94,18 @@ public class DatePickerPreference extends DialogPreference {
             if (defaultValue == null) {
                 mDate = getPersistedString(getContext().getString(R.string.starting_date));
             } else {
-                mDate  = getPersistedString(defaultValue.toString());
+                mDate = getPersistedString(defaultValue.toString());
             }
         } else {
-            mDate  = defaultValue.toString();
+            mDate = defaultValue.toString();
         }
-            mYear = getYear(mDate);
-            mDay = getDay(mDate);
-            mMonth = getMonth(mDate) - 1;
+        mYear = getYear(mDate);
+        mDay = getDay(mDate);
+        mMonth = getMonth(mDate) - 1;
 
-        }
+    }
 
-        // may move into some sort of util class?
+    // may move into some sort of util class?
 
     private int getYear(String date) {
         String[] pieces = date.split("-");

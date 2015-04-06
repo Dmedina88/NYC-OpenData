@@ -20,7 +20,7 @@ import com.grayherring.nyc_opendata.activities.NYCMapActivity;
 import com.grayherring.nyc_opendata.ui.DatePickerPreference;
 import com.grayherring.nyc_opendata.util.NyCrashPrefManager;
 
-public class NyCrashPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener ,
+public class NyCrashPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener,
         SharedPreferences.OnSharedPreferenceChangeListener {
 
 
@@ -62,7 +62,7 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mActivity =activity;
+        mActivity = activity;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference instanceof EditTextPreference) {
-            if (preference.getKey().equals(NyCrashPrefManager.LIMET_KEY )) {
+            if (preference.getKey().equals(NyCrashPrefManager.LIMET_KEY)) {
                 String limit = ((EditTextPreference) preference).getEditText().getText().toString();
                 if (limit.isEmpty() || limit.equals("0")) {
                     return false;
@@ -88,7 +88,7 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Intent returnIntent = new Intent();
         returnIntent.putExtra(NYCMapActivity.RESULT_KEY, true);
-        mActivity.setResult(Activity.RESULT_OK,returnIntent);
+        mActivity.setResult(Activity.RESULT_OK, returnIntent);
         Preference pref = findPreference(key);
         setSummary(pref);
     }
@@ -102,23 +102,24 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
                 this.setSummary(p);
         }
     }
-//if i put more of oen type I can  check to see if they have the right key
+
+    //if i put more of oen type I can  check to see if they have the right key
     private void setSummary(Preference pref) {
 
         if (pref instanceof EditTextPreference) {
             EditTextPreference editTextPref = (EditTextPreference) pref;
-                pref.setSummary(editTextPref.getText());
-                return;
+            pref.setSummary(editTextPref.getText());
+            return;
         }
 
         if (pref instanceof ListPreference) {
-            ListPreference listPreference  = (ListPreference) pref;
-                pref.setSummary(listPreference.getEntry());
-                return;
+            ListPreference listPreference = (ListPreference) pref;
+            pref.setSummary(listPreference.getEntry());
+            return;
 
         }
         if (pref instanceof DatePickerPreference) {
-           // DatePickerPreference listPreference  = (DatePickerPreference) pref;
+            // DatePickerPreference listPreference  = (DatePickerPreference) pref;
             pref.setSummary(NyCrashPrefManager.getInstance(getActivity()).getDate());
             return;
 

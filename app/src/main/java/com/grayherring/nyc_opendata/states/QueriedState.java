@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * Created by David on 4/5/2015.
  */
-public class QueriedState extends  MapState {
+public class QueriedState extends MapState {
 
     public QueriedState(NYCMapActivity nycMap) {
         super(nycMap);
@@ -23,8 +23,8 @@ public class QueriedState extends  MapState {
 
     @Override
     public void queriedSearchClicked() {
-        mNycMap.mapState = new NormalState(mNycMap);
-        mNycMap.mCurrentOffSet =0;
+        mNycMap.mapState = mNycMap.mNormalState;
+        mNycMap.mCurrentOffSet = 0;
         mNycMap.mapState.start();
     }
 
@@ -32,13 +32,13 @@ public class QueriedState extends  MapState {
     @Override
     protected HashMap<String, String> finishQuery(HashMap<String, String> quaryMap) {
         NyCrashPrefManager nyCrashPrefManager = NyCrashPrefManager.getInstance(mNycMap);
-        String where="latitude+IS+NOT+NULL";
-        if(nyCrashPrefManager.isDateChecked()){
-            where = where+"&"+"date="+nyCrashPrefManager.getDate()+ CollisionModel.USELESS_DATE_STRING;
+        String where = "latitude+IS+NOT+NULL";
+        if (nyCrashPrefManager.isDateChecked()) {
+            where = where + "&" + "date=" + nyCrashPrefManager.getDate() + CollisionModel.USELESS_DATE_STRING;
         }
         String borough = nyCrashPrefManager.GetBorught();
-        if(!borough.equals("All")){
-            where = where+"&"+"borough="+borough.replace(" ","+");
+        if (!borough.equals("All")) {
+            where = where + "&" + "borough=" + borough.replace(" ", "+");
 
         }
 

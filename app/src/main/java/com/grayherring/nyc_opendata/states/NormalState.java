@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * Created by David on 4/5/2015.
  */
-public class NormalState extends  MapState {
+public class NormalState extends MapState {
 
 
     public NormalState(NYCMapActivity nycMap) {
@@ -16,19 +16,19 @@ public class NormalState extends  MapState {
     }
 
 
-
     @Override
     public void updateUi() {
-        if(mNycMap.mMenu != null){
+        if (mNycMap.mMenu != null) {
 
-        mNycMap.mMenu.findItem(R.id.search).setTitle(mNycMap.getResources().getString(R.string.search));}
+            mNycMap.mMenu.findItem(R.id.search).setTitle(mNycMap.getResources().getString(R.string.search));
+        }
 
     }
 
     @Override
     public void queriedSearchClicked() {
-        mNycMap.mCurrentOffSet =0;
-        mNycMap.mapState = new QueriedState(mNycMap);
+        mNycMap.mCurrentOffSet = 0;
+        mNycMap.mapState = mNycMap.mQueriedState;
         mNycMap.mapState.start();
     }
 

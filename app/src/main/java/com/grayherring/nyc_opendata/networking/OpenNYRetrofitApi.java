@@ -21,7 +21,7 @@ public interface OpenNYRetrofitApi {
 
     @Headers(OpenNYRetroFitManager.APP_TOKEN)
     @GET(OpenNYRetroFitManager.BASE_URL)
-    public void makeQuery(@QueryMap(encodeValues=false) Map<String, String> options, Callback<ArrayList<CollisionModel>> response);
+    public void makeQuery(@QueryMap(encodeValues = false) Map<String, String> options, Callback<ArrayList<CollisionModel>> response);
 //@QueryMap(encodeValues=false)
 
 

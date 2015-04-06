@@ -30,9 +30,9 @@ import java.util.ArrayList;
 
 public class NYCMapActivity extends Activity {
 
-    public static final String RESULT_KEY = "RESULT" ;
-    private static final String OFFSET_KEY = "OFFSET_KEY" ;
-    private static final String COLLISION_MODEL_KEY = "COLLISION_MODEL_KEY" ;
+    public static final String RESULT_KEY = "RESULT";
+    private static final String OFFSET_KEY = "OFFSET_KEY";
+    private static final String COLLISION_MODEL_KEY = "COLLISION_MODEL_KEY";
     private static final String STATE_KEY = "STATE_KEY";
     public GoogleMap mMap; // Might be null if Google Play services APK is not available.
     public ArrayList<Marker> mMarkers;
@@ -40,19 +40,22 @@ public class NYCMapActivity extends Activity {
     public int mLimit;
     public int mCurrentOffSet = 0;
     public ProgressDialog mProgressDialog;
-    public Menu  mMenu;
+    public Menu mMenu;
+    public NormalState mNormalState;
+    public QueriedState mQueriedState;
 
     public MapState mapState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //ui stuff
         super.onCreate(savedInstanceState);
+        mNormalState = new NormalState(this);
+        mQueriedState = new QueriedState(this);
         setContentView(R.layout.activity_nycmap);
         FloatingActionButton fabButton = new FloatingActionButton.Builder(this)
                 .withDrawable(getResources().getDrawable(R.drawable.ic_next))
                 .withButtonColor(getResources().getColor(R.color.fob_color))
-                .withGravity(Gravity.BOTTOM |  Gravity.END)
+                .withGravity(Gravity.BOTTOM | Gravity.END)
                 .withMargins(0, 0, 16, 16)
                 .create();
         fabButton.setOnClickListener(new View.OnClickListener() {
@@ -61,15 +64,14 @@ public class NYCMapActivity extends Activity {
                 next();
             }
         });
-
         mCollisions = new ArrayList<>();
-        if(savedInstanceState !=null){
-            mCurrentOffSet = savedInstanceState.getInt(OFFSET_KEY,0);
+        if (savedInstanceState != null) {
+            mCurrentOffSet = savedInstanceState.getInt(OFFSET_KEY, 0);
             mCollisions = savedInstanceState.getParcelableArrayList(COLLISION_MODEL_KEY);
 
-            returnState(savedInstanceState.getString(STATE_KEY,NormalState.class.getSimpleName()));
-        }else{
-            mapState = new NormalState(this);
+            returnState(savedInstanceState.getString(STATE_KEY, NormalState.class.getSimpleName()));
+        } else {
+            mapState = mNormalState;
         }
 
         mProgressDialog = new ProgressDialog(this);
@@ -78,7 +80,7 @@ public class NYCMapActivity extends Activity {
         mLimit = Integer.parseInt(NyCrashPrefManager.getInstance(this).getLimet());
 
         setUpMapIfNeeded();
-        if(mCollisions.size()<1){
+        if (mCollisions.size() < 1) {
             mapState.start();
         }
 
@@ -156,12 +158,6 @@ public class NYCMapActivity extends Activity {
         }
     }
 
-    /**
-     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
-     * just add a marker near Africa.
-     * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
-     */
     public void setUpMap() {
 
         mMap.clear();
@@ -216,52 +212,54 @@ public class NYCMapActivity extends Activity {
     }
 
     private void previous() {
-        if (mCurrentOffSet > 0) {
-            mCurrentOffSet -= mLimit;
-            mapState.search();
+        mCurrentOffSet -= mLimit;
+        if (mCurrentOffSet < 0) {
+            mCurrentOffSet = 0;
         }
+        mapState.search();
     }
 
     // I only want to check the setting  change  if this is the activity we are coming from  on every time its resumed
     private void startSettings() {
         Intent intent = new Intent(this, SettingsActivity.class);
-        this.startActivityForResult(intent,0);
+        this.startActivityForResult(intent, 0);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //if limit changed in settings
-        if(data!=null) {
+        if (data != null) {
             if (data.getBooleanExtra(RESULT_KEY, false)) {
-                if (mapState instanceof QueriedState) {
+                int newLimit = Integer.parseInt(NyCrashPrefManager.getInstance(this).getLimet());
+                if (mapState instanceof QueriedState ||newLimit != mLimit) {
+                    mLimit = newLimit;
                     mapState.search();
-                    return;
+
                 }
             }
+
         }
-        int newLimit = Integer.parseInt(NyCrashPrefManager.getInstance(this).getLimet());
-        if(newLimit != mLimit){
-            mLimit = newLimit;
-            mapState.search();
-        }
+
+
 
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(OFFSET_KEY,mCurrentOffSet);
-        outState.putParcelableArrayList(COLLISION_MODEL_KEY,mCollisions);
+        outState.putInt(OFFSET_KEY, mCurrentOffSet);
+        outState.putParcelableArrayList(COLLISION_MODEL_KEY, mCollisions);
         outState.putString(STATE_KEY, mapState.getClass().getSimpleName());
     }
 
-    private void returnState(String className){
+    private void returnState(String className) {
 
-        if(className.equals(NormalState.class.getSimpleName())){
-            mapState = new NormalState(this);
-        }if(className.equals(QueriedState.class.getSimpleName())){
-            mapState = new QueriedState(this);
+        if (className.equals(NormalState.class.getSimpleName())) {
+            mapState = mNormalState;
+        }
+        if (className.equals(QueriedState.class.getSimpleName())) {
+            mapState = mQueriedState;
         }
     }
 }

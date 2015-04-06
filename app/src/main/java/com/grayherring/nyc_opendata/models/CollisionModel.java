@@ -11,6 +11,18 @@ import com.google.gson.annotations.SerializedName;
 public class CollisionModel implements Parcelable {
 
     public static final String USELESS_DATE_STRING = "T00:00:00";
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<CollisionModel> CREATOR = new Parcelable.Creator<CollisionModel>() {
+        @Override
+        public CollisionModel createFromParcel(Parcel in) {
+            return new CollisionModel(in);
+        }
+
+        @Override
+        public CollisionModel[] newArray(int size) {
+            return new CollisionModel[size];
+        }
+    };
     // i put theses in the order the json gave me altho it makes sense
     @SerializedName("number_of_persons_killed")
     public String personsKilled;
@@ -53,31 +65,6 @@ public class CollisionModel implements Parcelable {
     public String contributingVehical2;
     public float latitude;
 
-
-    public String getPrettyDate() {
-        return date.replace(USELESS_DATE_STRING, "");
-    }
-
-    public String report() {
-        return
-                "ZipCode: " + zipCode + '\n' +
-                        "Borough: " + borough + '\n' +
-                        "Off StreetName: " + offStreetName + '\n' +
-                        "On StreetName: " + onStreetName + '\n' +
-                        "Date: " + getPrettyDate() + '\n' +
-                        "Time: " + time + '\n' +
-                        "Persons Killed: " + personsKilled + '\n' +
-                        "Motorist Killed: " + motoristKilled + '\n' +
-                        "Moterist Injered: " + moteristInjered + '\n' +
-                        "Persons Injured: " + personsInjured + '\n' +
-                        "Pedestrians Killed: " + pedestriansInjered + '\n' +
-                        "Pedestrians Injered: " + pedestriansInjered + '\n' +
-                        "Cyclist Killed: " + cyclistKilled + '\n' +
-                        "Cyclist Injured: " + cyclistInjured;
-    }
-
-//parcel stuff
-
     protected CollisionModel(Parcel in) {
         personsKilled = in.readString();
         vehicleCode1 = in.readString();
@@ -101,6 +88,30 @@ public class CollisionModel implements Parcelable {
         contributingVehical3 = in.readString();
         contributingVehical2 = in.readString();
         latitude = in.readFloat();
+    }
+
+//parcel stuff
+
+    public String getPrettyDate() {
+        return date.replace(USELESS_DATE_STRING, "");
+    }
+
+    public String report() {
+        return
+                "ZipCode: " + zipCode + '\n' +
+                        "Borough: " + borough + '\n' +
+                        "Off StreetName: " + offStreetName + '\n' +
+                        "On StreetName: " + onStreetName + '\n' +
+                        "Date: " + getPrettyDate() + '\n' +
+                        "Time: " + time + '\n' +
+                        "Persons Killed: " + personsKilled + '\n' +
+                        "Motorist Killed: " + motoristKilled + '\n' +
+                        "Moterist Injered: " + moteristInjered + '\n' +
+                        "Persons Injured: " + personsInjured + '\n' +
+                        "Pedestrians Killed: " + pedestriansInjered + '\n' +
+                        "Pedestrians Injered: " + pedestriansInjered + '\n' +
+                        "Cyclist Killed: " + cyclistKilled + '\n' +
+                        "Cyclist Injured: " + cyclistInjured;
     }
 
     @Override
@@ -133,17 +144,4 @@ public class CollisionModel implements Parcelable {
         dest.writeString(contributingVehical2);
         dest.writeFloat(latitude);
     }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<CollisionModel> CREATOR = new Parcelable.Creator<CollisionModel>() {
-        @Override
-        public CollisionModel createFromParcel(Parcel in) {
-            return new CollisionModel(in);
-        }
-
-        @Override
-        public CollisionModel[] newArray(int size) {
-            return new CollisionModel[size];
-        }
-    };
 }

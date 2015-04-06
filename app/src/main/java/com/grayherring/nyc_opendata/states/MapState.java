@@ -40,7 +40,7 @@ public abstract class MapState {
 
     protected abstract HashMap<String, String> finishQuery(HashMap<String, String> quaryMap);
 
-    private HashMap getBasicQuaryMap() {
+    protected HashMap getBasicQuaryMap() {
         mNycMap.mProgressDialog.show();
         HashMap<String, String> quaryMap = new HashMap<>();
         quaryMap.put("$limit", "" + mNycMap.mLimit);
@@ -49,14 +49,23 @@ public abstract class MapState {
         return quaryMap;
     }
 
-    private void runQuery(HashMap<String, String> quaryMap) {
+    protected void runQuery(HashMap<String, String> quaryMap) {
 
         OpenNYRetroFitManager.getInstince().makeQuary(quaryMap, new Callback<ArrayList<CollisionModel>>() {
             @Override
             public void success(ArrayList<CollisionModel> collisionModels, Response response) {
-
                 mNycMap.mCollisions = collisionModels;
                 mNycMap.setUpMap();
+                if(collisionModels.size() ==0){
+                    if(mNycMap.mCurrentOffSet >0){
+                        if(mNycMap.mCurrentOffSet >mNycMap.mLimit ) {
+                            mNycMap.mCurrentOffSet -= mNycMap.mLimit;
+                        }
+                        else {
+                            mNycMap.mCurrentOffSet = 0;
+                        }
+                    }
+                }
             }
 
             @Override
