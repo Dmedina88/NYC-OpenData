@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
  */
 public class NyCrashPrefManager {
 
-    public static final String SHARED_PREF = "SHARED_PREF";
     public static final String LIMET_KEY = "LIMET_KEY";
     public static final String DATE_KEY = "DATE_KEY";
     public static final String DATE_CHECKBOX_KEY = "date_checkbox";
@@ -32,16 +31,6 @@ public class NyCrashPrefManager {
 
     }
 
-    public void startEdit() {
-        editor = pref.edit();
-    }
-
-    public void stopEdit() {
-        editor.commit();
-        editor = null;
-
-    }
-
 
     public String getLimet() {
         return pref.getString(LIMET_KEY, "15");
@@ -52,19 +41,13 @@ public class NyCrashPrefManager {
     }
 
     public String getDate() {
-        return pref.getString(DATE_KEY, "1988-09-23");
+        return pref.getString(DATE_KEY, "2012-07-01");
     }
     public String GetBorught() {
         return pref.getString(BOROUGH_KEY, "All");
     }
 
 
-    //part of me  wants to make this take a string and turn it to int
-    public void setLimet(String value) {
-        editor = pref.edit();
-        editor.putString(LIMET_KEY, value);
-        editor.commit();
-        editor = null;
-    }
+
 
 }

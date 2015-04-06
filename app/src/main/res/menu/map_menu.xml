@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.grayherring.nyc_opendata.activities.NYCMap">
+    tools:context="com.grayherring.nyc_opendata.activities.NYCMapActivity">
 
     <item
         android:id="@+id/action_previous"
         android:icon="@drawable/ic_back"
         android:orderInCategory="100"
-        android:title="Previous"
+        android:title="@string/previous"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_next"
@@ -16,15 +16,17 @@
         android:orderInCategory="100"
         android:title="Next"
         app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/search"
         android:orderInCategory="100"
-        android:title="Search"
+        android:title="@string/search"
         app:showAsAction="ifRoom|withText" />
 
     <item
         android:id="@+id/settings"
         android:orderInCategory="100"
-        android:title="Search Settings"
+        android:title="@string/settings"
         app:showAsAction="ifRoom|withText" />
+
 </menu>

@@ -1,6 +1,7 @@
 package com.grayherring.nyc_opendata.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
@@ -15,12 +16,15 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.grayherring.nyc_opendata.R;
+import com.grayherring.nyc_opendata.activities.NYCMapActivity;
 import com.grayherring.nyc_opendata.ui.DatePickerPreference;
 import com.grayherring.nyc_opendata.util.NyCrashPrefManager;
 
 public class NyCrashPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener ,
         SharedPreferences.OnSharedPreferenceChangeListener {
 
+
+    Activity mActivity;
 
     public NyCrashPreferenceFragment() {
         // Required empty public constructor
@@ -58,7 +62,7 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
+        mActivity =activity;
     }
 
     @Override
@@ -82,6 +86,9 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra(NYCMapActivity.RESULT_KEY, true);
+        mActivity.setResult(Activity.RESULT_OK,returnIntent);
         Preference pref = findPreference(key);
         setSummary(pref);
     }
@@ -97,7 +104,6 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
     }
 //if i put more of oen type I can  check to see if they have the right key
     private void setSummary(Preference pref) {
-
 
         if (pref instanceof EditTextPreference) {
             EditTextPreference editTextPref = (EditTextPreference) pref;
@@ -118,5 +124,11 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
 
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+
+        super.onDestroy();
     }
 }

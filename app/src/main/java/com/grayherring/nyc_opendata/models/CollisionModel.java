@@ -1,11 +1,14 @@
 package com.grayherring.nyc_opendata.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by David on 4/1/2015.
  */
-public class CollisionModel {
+public class CollisionModel implements Parcelable {
 
     public static final String USELESS_DATE_STRING = "T00:00:00";
     // i put theses in the order the json gave me altho it makes sense
@@ -73,5 +76,74 @@ public class CollisionModel {
                         "Cyclist Injured: " + cyclistInjured;
     }
 
+//parcel stuff
 
+    protected CollisionModel(Parcel in) {
+        personsKilled = in.readString();
+        vehicleCode1 = in.readString();
+        zipCode = in.readString();
+        vehicleCode2 = in.readString();
+        moteristInjered = in.readString();
+        date = in.readString();
+        offStreetName = in.readString();
+        time = in.readString();
+        onStreetName = in.readString();
+        pedestriansInjered = in.readString();
+        cyclistKilled = in.readString();
+        longitude = in.readFloat();
+        vehicleCode3 = in.readString();
+        cyclistInjured = in.readString();
+        uniqueKey = in.readString();
+        borough = in.readString();
+        contributingVehical1 = in.readString();
+        motoristKilled = in.readString();
+        personsInjured = in.readString();
+        contributingVehical3 = in.readString();
+        contributingVehical2 = in.readString();
+        latitude = in.readFloat();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(personsKilled);
+        dest.writeString(vehicleCode1);
+        dest.writeString(zipCode);
+        dest.writeString(vehicleCode2);
+        dest.writeString(moteristInjered);
+        dest.writeString(date);
+        dest.writeString(offStreetName);
+        dest.writeString(time);
+        dest.writeString(onStreetName);
+        dest.writeString(pedestriansInjered);
+        dest.writeString(cyclistKilled);
+        dest.writeFloat(longitude);
+        dest.writeString(vehicleCode3);
+        dest.writeString(cyclistInjured);
+        dest.writeString(uniqueKey);
+        dest.writeString(borough);
+        dest.writeString(contributingVehical1);
+        dest.writeString(motoristKilled);
+        dest.writeString(personsInjured);
+        dest.writeString(contributingVehical3);
+        dest.writeString(contributingVehical2);
+        dest.writeFloat(latitude);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<CollisionModel> CREATOR = new Parcelable.Creator<CollisionModel>() {
+        @Override
+        public CollisionModel createFromParcel(Parcel in) {
+            return new CollisionModel(in);
+        }
+
+        @Override
+        public CollisionModel[] newArray(int size) {
+            return new CollisionModel[size];
+        }
+    };
 }

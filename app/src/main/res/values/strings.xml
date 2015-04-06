@@ -5,6 +5,11 @@
     <string name="crash_report">Crash Report</string>
     <string name="share">Share</string>
     <string name="error">network error</string>
+    <string name="previous">Previous</string>
+    <string name="search">Search</string>
+    <string name="settings">Search Settings</string>
+    <string name="locational_search">Locational Search</string>
+    <string name="starting_date">2012-07-01</string>
 
     >
 </resources>

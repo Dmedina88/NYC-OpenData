@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 
+import com.grayherring.nyc_opendata.R;
+
 /**
  * Created by David on 4/4/2015.
  */
@@ -90,7 +92,7 @@ public class DatePickerPreference extends DialogPreference {
 
         if (restore) {
             if (defaultValue == null) {
-                mDate = getPersistedString("1988-09-23");
+                mDate = getPersistedString(getContext().getString(R.string.starting_date));
             } else {
                 mDate  = getPersistedString(defaultValue.toString());
             }
