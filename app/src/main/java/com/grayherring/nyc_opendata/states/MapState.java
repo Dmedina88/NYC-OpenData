@@ -35,23 +35,24 @@ public abstract class MapState {
     }
 
     public void search() {
-        runQuery(finishQuery(getBasicQuaryMap()));
+        runQuery(finishQuery(getBasicQueryMap()));
     }
 
     protected abstract HashMap<String, String> finishQuery(HashMap<String, String> quaryMap);
 
-    protected HashMap getBasicQuaryMap() {
+    protected HashMap getBasicQueryMap() {
         mNycMap.mProgressDialog.show();
-        HashMap<String, String> quaryMap = new HashMap<>();
-        quaryMap.put("$limit", "" + mNycMap.mLimit);
-        quaryMap.put("$offset", "" + mNycMap.mCurrentOffSet);
-        quaryMap.put("$order", "date+DESC");
-        return quaryMap;
+
+        HashMap<String, String> queryMap = new HashMap<>();
+        queryMap.put("$limit", "" + mNycMap.mLimit);
+        queryMap.put("$offset", "" + mNycMap.mCurrentOffSet);
+        queryMap.put("$order", "date+DESC");
+        return queryMap;
     }
 
-    protected void runQuery(HashMap<String, String> quaryMap) {
-
-        OpenNYRetroFitManager.getInstince().makeQuary(quaryMap, new Callback<ArrayList<CollisionModel>>() {
+    protected void runQuery(HashMap<String, String> queryMap) {
+        mNycMap.lockScreen();
+        OpenNYRetroFitManager.getInstince().makeQuary(queryMap, new Callback<ArrayList<CollisionModel>>() {
             @Override
             public void success(ArrayList<CollisionModel> collisionModels, Response response) {
                 mNycMap.mCollisions = collisionModels;
@@ -66,13 +67,14 @@ public abstract class MapState {
                         }
                     }
                 }
+                mNycMap.unlockScreen();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 mNycMap.mProgressDialog.dismiss();
-
                 Toast.makeText(mNycMap, R.string.error, Toast.LENGTH_LONG).show();
+                mNycMap.unlockScreen();
             }
         });
     }

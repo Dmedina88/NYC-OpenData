@@ -1,6 +1,7 @@
 package com.grayherring.nyc_opendata.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -41,11 +42,10 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.pref_general);
 
-        EditTextPreference etp = (EditTextPreference) findPreference(NyCrashPrefManager.LIMET_KEY);
-        etp.setOnPreferenceChangeListener(this);
-        EditText et = (EditText) etp.getEditText();
-        et.setKeyListener(DigitsKeyListener.getInstance());
-
+        EditTextPreference limitPref = (EditTextPreference) findPreference(NyCrashPrefManager.LIMIT_KEY);
+        limitPref.setOnPreferenceChangeListener(this);
+        EditText limitEditText = limitPref.getEditText();
+        limitEditText.setKeyListener(DigitsKeyListener.getInstance());
         initSummaries(getPreferenceScreen());
         this.getPreferenceScreen().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(this);
@@ -65,17 +65,15 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
         mActivity = activity;
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference instanceof EditTextPreference) {
-            if (preference.getKey().equals(NyCrashPrefManager.LIMET_KEY)) {
+            if (preference.getKey().equals(NyCrashPrefManager.LIMIT_KEY)) {
                 String limit = ((EditTextPreference) preference).getEditText().getText().toString();
-                if (limit.isEmpty() || limit.equals("0")) {
+                int intLimit = Integer.parseInt(limit);
+                if (limit.isEmpty() || limit.equals("0")||intLimit  >100) {
+                  new  AlertDialog.Builder(mActivity).setMessage(mActivity.getString(R.string.limit_alert)).setTitle(mActivity.getString(R.string.alert)).show();
                     return false;
                 }
             }
@@ -103,7 +101,7 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
         }
     }
 
-    //if i put more of oen type I can  check to see if they have the right key
+
     private void setSummary(Preference pref) {
 
         if (pref instanceof EditTextPreference) {
@@ -112,24 +110,19 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
             return;
         }
 
+
         if (pref instanceof ListPreference) {
             ListPreference listPreference = (ListPreference) pref;
             pref.setSummary(listPreference.getEntry());
             return;
-
         }
         if (pref instanceof DatePickerPreference) {
             // DatePickerPreference listPreference  = (DatePickerPreference) pref;
             pref.setSummary(NyCrashPrefManager.getInstance(getActivity()).getDate());
             return;
-
         }
 
     }
 
-    @Override
-    public void onDestroy() {
 
-        super.onDestroy();
-    }
 }

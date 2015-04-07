@@ -2,7 +2,7 @@
     <PreferenceCategory android:title="Map Settings">
         <EditTextPreference
             android:defaultValue="15"
-            android:key="LIMET_KEY"
+            android:key="LIMIT_KEY"
             android:summary=""
             android:title="Markers Per Search" />
 
@@ -25,16 +25,26 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Borough Search Settings">
+    <PreferenceCategory android:title="Location Search Settings">
 
         <ListPreference
             android:defaultValue="All"
-            android:entries="@array/boroughs"
-            android:entryValues="@array/boroughs"
+            android:entries="@array/location"
+            android:entryValues="@array/location"
             android:key="borough_key"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="Select Borough to Search" />
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/miles"
+            android:entryValues="@array/miles"
+            android:key="MILES_KEY"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="Miles from location to searched" />
+
 
     </PreferenceCategory>
 

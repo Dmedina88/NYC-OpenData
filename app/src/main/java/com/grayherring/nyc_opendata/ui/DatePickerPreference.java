@@ -57,13 +57,13 @@ public class DatePickerPreference extends DialogPreference {
             mYear = mDatePicker.getYear();
 
             int numMonth = mMonth + 1;
-            String month = "";
+            String month;
             if (numMonth < 10) {
                 month = "0" + numMonth;
             } else {
                 month = "" + numMonth;
             }
-            String day = "";
+            String day;
             if (mDay < 10) {
                 day = "0" + mDay;
             } else {

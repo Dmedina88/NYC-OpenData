@@ -8,10 +8,11 @@ import android.content.SharedPreferences;
  */
 public class NyCrashPrefManager {
 
-    public static final String LIMET_KEY = "LIMET_KEY";
+    public static final String LIMIT_KEY = "LIMIT_KEY";
     public static final String DATE_KEY = "DATE_KEY";
     public static final String DATE_CHECKBOX_KEY = "date_checkbox";
     public static final String BOROUGH_KEY = "borough_key";
+    public static final String MILES_KEY = "MILES_KEY";
 
     private static NyCrashPrefManager instance;
     private SharedPreferences pref;
@@ -29,9 +30,8 @@ public class NyCrashPrefManager {
 
     }
 
-
-    public String getLimet() {
-        return pref.getString(LIMET_KEY, "15");
+    public String getLimit() {
+        return pref.getString(LIMIT_KEY, "15");
     }
 
     public boolean isDateChecked() {
@@ -42,9 +42,12 @@ public class NyCrashPrefManager {
         return pref.getString(DATE_KEY, "2012-07-01");
     }
 
-    public String GetBorught() {
+    public String getBorough() {
         return pref.getString(BOROUGH_KEY, "All");
     }
-
+// consider returning this as an int here or changing  how it is saved in the fragment to  save it as an int
+    public String getMiles() {
+        return pref.getString(MILES_KEY, "1");
+    }
 
 }

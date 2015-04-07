@@ -33,9 +33,9 @@ public class NormalState extends MapState {
     }
 
     @Override
-    protected HashMap<String, String> finishQuery(HashMap<String, String> quaryMap) {
-        quaryMap.put("$where", "latitude+IS+NOT+NULL");
-        return quaryMap;
+    protected HashMap<String, String> finishQuery(HashMap<String, String> queryMap) {
+        queryMap.put("$where", "latitude+IS+NOT+NULL");
+        return queryMap;
     }
 
 }

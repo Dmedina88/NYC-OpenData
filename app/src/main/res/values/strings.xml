@@ -8,8 +8,11 @@
     <string name="previous">Previous</string>
     <string name="search">Search</string>
     <string name="settings">Search Settings</string>
-    <string name="locational_search">Locational Search</string>
     <string name="starting_date">2012-07-01</string>
+    <string name="refresh">Refresh</string>
+    <string name="next">Next</string>
+    <string name="alert">Alert</string>
+    <string name="limit_alert">Limit can not be less then 0 or more then 100. New value discarded</string>
 
     >
 </resources>

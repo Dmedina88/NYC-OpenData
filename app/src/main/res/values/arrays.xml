@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="boroughs">
+    <string-array name="location">
         <item>All</item>
         <item>MANHATTAN</item>
         <item>BROOKLYN</item>
         <item>QUEENS</item>
         <item>BRONX</item>
         <item>STATEN ISLAND</item>
+        <item>YOUR LOCATION</item>
+    </string-array>
+
+    <string-array name="miles">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
     </string-array>
 </resources>

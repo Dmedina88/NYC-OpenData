@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -14,7 +16,6 @@ import android.view.View;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -77,7 +78,8 @@ public class NYCMapActivity extends Activity {
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage(getString(R.string.gathering_crash_report));
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        mLimit = Integer.parseInt(NyCrashPrefManager.getInstance(this).getLimet());
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mLimit = Integer.parseInt(NyCrashPrefManager.getInstance(this).getLimit());
 
         setUpMapIfNeeded();
         if (mCollisions.size() < 1) {
@@ -87,28 +89,7 @@ public class NYCMapActivity extends Activity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-
-    }
-
-    /**
-     * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
-     * <p/>
-     * If it isn't installed {@link SupportMapFragment} (and
-     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
-     * install/update the Google Play services APK on their device.
-     * <p/>
-     * A user can return to this FragmentActivity after following the prompt and correctly
-     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
-     * have been completely destroyed during this process (it is likely that it would only be
-     * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called.
-     */
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
@@ -143,16 +124,7 @@ public class NYCMapActivity extends Activity {
                     }
                 });
                 // mMap.addMarker(new MarkerOptions().position(new LatLng(mMap.getMyLocation().getLatitude(),mMap.getMyLocation().getLongitude()));
-                //mMap.setMyLocationEnabled(true);
-                mMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
-                    @Override
-                    public boolean onMyLocationButtonClick() {
-                        double lat = mMap.getMyLocation().getLatitude();
-                        double lon = mMap.getMyLocation().getLongitude();
-                        return false;
-                    }
-                });
-
+                mMap.setMyLocationEnabled(true);
                 setUpMap();
             }
         }
@@ -197,6 +169,9 @@ public class NYCMapActivity extends Activity {
             case R.id.search:
                 mapState.queriedSearchClicked();
                 break;
+            case R.id.refresh:
+                mapState.search();
+                break;
 
         }
 
@@ -231,7 +206,7 @@ public class NYCMapActivity extends Activity {
         //if limit changed in settings
         if (data != null) {
             if (data.getBooleanExtra(RESULT_KEY, false)) {
-                int newLimit = Integer.parseInt(NyCrashPrefManager.getInstance(this).getLimet());
+                int newLimit = Integer.parseInt(NyCrashPrefManager.getInstance(this).getLimit());
                 if (mapState instanceof QueriedState ||newLimit != mLimit) {
                     mLimit = newLimit;
                     mapState.search();
@@ -261,5 +236,19 @@ public class NYCMapActivity extends Activity {
         if (className.equals(QueriedState.class.getSimpleName())) {
             mapState = mQueriedState;
         }
+    }
+
+    public void lockScreen(){
+        int currentOrientation = getResources().getConfiguration().orientation;
+        if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        }
+        else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+        }
+    }
+
+    public void unlockScreen(){
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
     }
 }

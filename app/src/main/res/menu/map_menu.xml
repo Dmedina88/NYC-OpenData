@@ -14,7 +14,7 @@
         android:id="@+id/action_next"
         android:icon="@drawable/ic_next"
         android:orderInCategory="100"
-        android:title="Next"
+        android:title="@string/next"
         app:showAsAction="ifRoom" />
 
     <item
@@ -27,6 +27,12 @@
         android:id="@+id/settings"
         android:orderInCategory="100"
         android:title="@string/settings"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/refresh"
+        android:orderInCategory="100"
+        android:title="@string/refresh"
         app:showAsAction="ifRoom|withText" />
 
 </menu>
