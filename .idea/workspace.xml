@@ -15,7 +15,6 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.grayherring.nyc_opendata" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5be8d092-f340-4637-9461-43610c128399" name="Default" comment="" />
@@ -58,78 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapState.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/states/MapState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1207">
-              <caret line="76" column="39" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FloatingActionButton.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/ui/FloatingActionButton.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1895" max-vertical-offset="2992">
-              <caret line="139" column="35" selection-start-line="139" selection-start-column="35" selection-end-line="139" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatePickerPreference.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/ui/DatePickerPreference.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2074">
-              <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pref_general.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="393" max-vertical-offset="969">
-              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-              <folding>
-                <marker date="1428386314050" expanded="true" signature="881:1602" placeholder="..." />
-                <marker date="1428386314050" expanded="true" signature="1255:1574" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arrays.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527">
-              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NyCrashPreferenceFragment.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="NyCrashPreferenceFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/fragments/NyCrashPreferenceFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="2278">
-              <caret line="50" column="64" selection-start-line="50" selection-start-column="64" selection-end-line="50" selection-end-column="64" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2813#2854#0" expanded="true" />
-                <element signature="e#2865#2900#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QueriedState.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/states/QueriedState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42628774" vertical-offset="1086" max-vertical-offset="1819">
-              <caret line="82" column="17" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.38898757" vertical-offset="1056" max-vertical-offset="2278">
+              <caret line="75" column="180" selection-start-line="75" selection-start-column="171" selection-end-line="75" selection-end-column="180" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -137,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NyCrashPrefManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/util/NyCrashPrefManager.java">
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="816">
-              <caret line="14" column="53" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
+            <state vertical-scroll-proportion="-9.52" vertical-offset="0" max-vertical-offset="425">
+              <caret line="14" column="98" selection-start-line="14" selection-start-column="98" selection-end-line="14" selection-end-column="98" />
               <folding />
             </state>
           </provider>
@@ -980,17 +912,17 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/models/sadas.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/map_menu.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/ui/DatePickerPreference.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/models/MinMaxLatLon.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/states/NormalState.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/util/NyCrashPrefManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/fragments/NyCrashPreferenceFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/activities/NYCMapActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/states/MapState.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/states/QueriedState.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/fragments/NyCrashPreferenceFragment.java" />
       </list>
     </option>
   </component>
@@ -1840,14 +1772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.06" vertical-offset="0" max-vertical-offset="374">
-          <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/networking/OpenNYRetrofitApi.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.76" vertical-offset="0" max-vertical-offset="442">
@@ -1917,8 +1841,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="393" max-vertical-offset="969">
           <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding>
-            <marker date="1428386314050" expanded="true" signature="881:1602" placeholder="..." />
-            <marker date="1428386314050" expanded="true" signature="1255:1574" placeholder="..." />
+            <marker date="1428386314050" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1428386314050" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1928,18 +1852,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
           <caret line="14" column="53" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/fragments/NyCrashPreferenceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="2278">
-          <caret line="50" column="64" selection-start-line="50" selection-start-column="64" selection-end-line="50" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2813#2854#0" expanded="true" />
-            <element signature="e#2865#2900#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1955,6 +1867,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="807" max-vertical-offset="2074">
           <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/states/MapState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1207">
+          <caret line="76" column="39" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/states/QueriedState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.664" vertical-offset="909" max-vertical-offset="1819">
+          <caret line="77" column="25" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.52" vertical-offset="0" max-vertical-offset="408">
+          <caret line="14" column="98" selection-start-line="14" selection-start-column="98" selection-end-line="14" selection-end-column="98" />
           <folding />
         </state>
       </provider>
@@ -1975,18 +1913,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/states/MapState.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/fragments/NyCrashPreferenceFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1207">
-          <caret line="76" column="39" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/grayherring/nyc_opendata/states/QueriedState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42628774" vertical-offset="1086" max-vertical-offset="1819">
-          <caret line="82" column="17" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.38898757" vertical-offset="1056" max-vertical-offset="2278">
+          <caret line="75" column="180" selection-start-line="75" selection-start-column="171" selection-end-line="75" selection-end-column="180" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

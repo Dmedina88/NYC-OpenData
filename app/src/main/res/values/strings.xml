@@ -12,7 +12,8 @@
     <string name="refresh">Refresh</string>
     <string name="next">Next</string>
     <string name="alert">Alert</string>
-    <string name="limit_alert">Limit can not be less then 0 or more then 100. New value discarded</string>
+    <string name="limit_alert">Limit can not be less then 0 or more then 100. New value discarded.</string>
+    <string name="ok">Ok</string>
 
     >
 </resources>

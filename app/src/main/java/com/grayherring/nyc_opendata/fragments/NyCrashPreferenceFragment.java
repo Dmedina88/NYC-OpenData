@@ -73,7 +73,7 @@ public class NyCrashPreferenceFragment extends PreferenceFragment implements Pre
                 String limit = ((EditTextPreference) preference).getEditText().getText().toString();
                 int intLimit = Integer.parseInt(limit);
                 if (limit.isEmpty() || limit.equals("0")||intLimit  >100) {
-                  new  AlertDialog.Builder(mActivity).setMessage(mActivity.getString(R.string.limit_alert)).setTitle(mActivity.getString(R.string.alert)).show();
+                  new  AlertDialog.Builder(mActivity).setMessage(mActivity.getString(R.string.limit_alert)).setTitle(mActivity.getString(R.string.alert)).setNeutralButton(mActivity.getString(R.string.ok),null).show();
                     return false;
                 }
             }
